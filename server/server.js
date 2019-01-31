@@ -16,7 +16,8 @@ if (!isDev) {
     res.send(template.replace('<!-- app -->', appString))
   })
 } else {
-
+  const devStatic = require('./util/dev.static')
+  devStatic(app)
 }
 
 app.listen(3333, function () {
