@@ -4,8 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node ./build/bundle.js",
-    "build": "webpack --config webpack.server.js"
+    "dev": "npm-run-all --parallel dev:**",
+    "dev:start": "nodemon --watch build --exec node \"./build/bundle.js\"",
+    "dev:build": "webpack --config webpack.server.js  --watch"
   },
   "dependencies": {
     "babel-core": "^6.26.3",
@@ -14,6 +15,8 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "express": "^4.16.4",
+    "nodemon": "^1.18.10",
+    "npm-run-all": "^4.1.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "webpack": "^4.29.6",

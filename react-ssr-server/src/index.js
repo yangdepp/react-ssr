@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
       <head>
         <title>hello</title>
       </head>
+      
       <body>
       ${content}
       </body>
