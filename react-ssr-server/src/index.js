@@ -4,6 +4,9 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 
 const app = express();
+//  express返回一个静态文件
+app.use(express.static('public'));
+
 const content = renderToString(<Home />);
 
 app.get('/', (req, res) => {
@@ -12,9 +15,10 @@ app.get('/', (req, res) => {
       <head>
         <title>hello</title>
       </head>
-      
+
       <body>
       ${content}
+      <script src="index.js"></script>
       </body>
     </html>
   `);
