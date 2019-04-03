@@ -1,7 +1,8 @@
 const express = require('express');
-import Home from './containers/Home';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
+
+import Home from '../containers/Home';
 
 const app = express();
 //  express返回一个静态文件
