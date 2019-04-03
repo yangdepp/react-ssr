@@ -1,0 +1,13 @@
+{
+  "name": "react-ssr-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "react": "^16.8.6"
+  }
+}
