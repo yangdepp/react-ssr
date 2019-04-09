@@ -1,13 +1,22 @@
-import React from 'react'
+import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import Routes from '../Routes';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
 export const render = (req) => {
+  const reducer = (state = { name: 'yang' }, action) => {
+    return state;
+  };
+  const store = createStore(reducer);
+
   const content = renderToString(
-    <StaticRouter location={req.path} context={{}}>
-      {Routes}
-    </StaticRouter>,
+    <Provider store={store}>
+      <StaticRouter location={req.path} context={{}}>
+        {Routes}
+      </StaticRouter>
+    </Provider>,
   );
 
   return `

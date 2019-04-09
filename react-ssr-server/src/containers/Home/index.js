@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 //  同构： 一套react代码，在服务器端执行一次，在客户端再执行一次
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div>
-        <div>This is Home</div>
+        <div>This is {this.props.name}</div>
         <button
           onClick={() => {
             alert('hello world');
@@ -18,5 +22,10 @@ class Home extends Component {
     );
   }
 }
-
-export default Home;
+const mapStateToProps = (state) => ({
+  name: state.name,
+});
+export default connect(
+  mapStateToProps,
+  null,
+)(Home);
