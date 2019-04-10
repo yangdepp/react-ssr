@@ -17,7 +17,7 @@ export const render = (req) => {
   return `
   <html>
     <head>
-      <title>hello</title>
+      <title>react-ssr</title>
     </head>
 
     <body>
