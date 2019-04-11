@@ -6,12 +6,9 @@ import { Provider } from 'react-redux';
 import getStore from '../store';
 
 export const render = (req) => {
-
   const store = getStore();
 
   //  如果在这里，可以拿到异步数据，并填充到store中
-  -
-
 
   const content = renderToString(
     <Provider store={store}>
