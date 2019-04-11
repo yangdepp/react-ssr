@@ -2,4 +2,4 @@ node_modules
 react-ssr-server/node_modules
 react-ssr-demo/node_modules
 react-ssr-server/build
-react-ssr-server/public
+react-ssr-server/public/index.js
