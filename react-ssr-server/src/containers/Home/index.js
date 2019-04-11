@@ -9,6 +9,7 @@ class Home extends Component {
     super(props);
   }
 
+  //  componentDidMount在服务器端是不执行的
   componentDidMount() {
     this.props.getHomeList()
   }
@@ -18,7 +19,7 @@ class Home extends Component {
     return (
       <div>
         <Header />
-        <div>This is {this.props.name}</div>
+        <div>This is Hello world</div>
         {
           this.props.list.map((item) => {
             return (
@@ -39,7 +40,6 @@ class Home extends Component {
 }
 const mapStateToProps = (state) => ({
   list: state.home.newsList,
-  name: state.home.name,
 });
 
 const mapDispatchToProps = dispatch => ({

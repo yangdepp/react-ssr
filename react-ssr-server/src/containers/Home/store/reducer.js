@@ -1,12 +1,13 @@
+import {CHANGE_LIST} from './constants'
+
 const defaultState = {
-  name: 'yang',
   newsList: []
 }
 
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case 'change_home_list':
+    case CHANGE_LIST:
       return {
         ...state,
         newsList: action.list
