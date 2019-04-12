@@ -21,7 +21,6 @@ export const render = (store, routes, req) => {
       <head>
         <title>react-ssr</title>
       </head>
-  
       <body>
       <div id="root">${content}</div>
       <script src="index.js"></script>
