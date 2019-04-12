@@ -6,8 +6,12 @@ const reducer = combineReducers({
   home: homeReducer
 })
 
-const getStore = () => {
+export const getStore = () => {
   return createStore(reducer, applyMiddleware(thunk));
 }
 
-export default getStore;
+export const getClientStore = () => {
+  const defaultState = window.context.state;
+  //  defaultState作为reducer的默认值
+  return createStore(reducer, defaultState, applyMiddleware(thunk));
+}

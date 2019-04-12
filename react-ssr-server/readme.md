@@ -68,3 +68,16 @@
         // todo
       })
   ```
+
+  # 数据的脱水与注水
+
+  1. 服务端渲染时，讲获取到的组件数据放在window.context下
+
+  2. 在客户端渲染时，把window.context下的页面数据放进getClientStore中
+  ```js
+    export const getClientStore = () => {
+      const defaultState = window.context.state;
+      //  defaultState作为reducer的默认值
+      return createStore(reducer, defaultState, applyMiddleware(thunk));
+    }
+  ```

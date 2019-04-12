@@ -2,7 +2,7 @@ import express from 'express';
 import { matchRoutes } from 'react-router-config';
 import { render } from './utils';
 import routes from '../Routes';
-import getStore from '../store';
+import { getStore } from '../store';
 
 const app = express();
 //  express返回一个静态文件
