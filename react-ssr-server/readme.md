@@ -11,7 +11,7 @@
 #  解决方案
 
 1.先给组件添加一个静态方法
-  ```
+  ```js
   //  给Home组件增加一个静态方法
   //  这个函数负责在服务器渲染之前，把这个路由需要的异步数据提前加载好
   //  接收store，直接返回那个请求的action（axios请求是一个promise对象）
@@ -25,7 +25,7 @@
           访问 /login 路径，拿login组件的异步数据  
 
 (1) 改造路由```Routes.js```  
-  ```
+  ```js
     export default [
       {
         path: '/',
@@ -41,7 +41,7 @@
     ];
   ```
 (2) 服务端渲染时：根据用户请求地址、路由判断当前组件需要的数据，提前放在store里面
-  ```
+  ```js
   // 1.先找出请求的路径和匹配的路由
   // 使用react-router-config的matchRoutes方法可以匹配多级路由
   // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
