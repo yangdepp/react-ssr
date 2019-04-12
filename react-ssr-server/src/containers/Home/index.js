@@ -11,7 +11,9 @@ class Home extends Component {
 
   //  componentDidMount在服务器端是不执行的
   componentDidMount() {
-    this.props.getHomeList();
+    if (!this.props.list.length) {
+      this.props.getHomeList();
+    }
   }
 
   render() {
@@ -20,7 +22,7 @@ class Home extends Component {
         <Header />
         <div>This is Hello world</div>
         {this.props.list.map(item => {
-          return <div key={item.id}>hello</div>;
+          return <div key={item.id}>{item.shop}</div>;
         })}
         <button
           onClick={() => {
