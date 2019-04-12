@@ -6,7 +6,7 @@ import routes from '../Routes';
 import { Provider } from 'react-redux';
 import getStore from '../store';
 
-export const render = req => {
+export const render = (req, res) => {
   const store = getStore();
   /*   如果在这里，可以拿到异步数据，并填充到store中，这时store就有数据了
   服务端渲染时，store里填充什么数据，需要根据当前用户请求地址、路由判断
@@ -23,33 +23,39 @@ export const render = req => {
     }
   }); */
 
-  let matchedRoutes = matchRoutes(routes, req.path);
+  // matchedRoutes里面是所有匹配到的组件
+  const matchedRoutes = matchRoutes(routes, req.path);
+  let promises = [];
+  matchedRoutes.forEach(item => {
+    if (item.route.loadData) {
+      promises.push(item.route.loadData(store));
+    }
+  });
 
-  // 让matchedRoutes里面所有的组件，对应的loadData方法执行一次
-  console.log(matchedRoutes);
+  Promise.all(promises).then(() => {
+    const content = renderToString(
+      <Provider store={store}>
+        <StaticRouter location={req.path} context={{}}>
+          <div>
+            {routes.map(route => (
+              <Route {...route} />
+            ))}
+          </div>
+        </StaticRouter>
+      </Provider>,
+    );
 
-  const content = renderToString(
-    <Provider store={store}>
-      <StaticRouter location={req.path} context={{}}>
-        <div>
-          {routes.map(route => (
-            <Route {...route} />
-          ))}
-        </div>
-      </StaticRouter>
-    </Provider>,
-  );
-
-  return `
-  <html>
-    <head>
-      <title>react-ssr</title>
-    </head>
-
-    <body>
-    <div id="root">${content}</div>
-    <script src="index.js"></script>
-    </body>
-  </html>
-`;
+    res.send(`
+    <html>
+      <head>
+        <title>react-ssr</title>
+      </head>
+  
+      <body>
+      <div id="root">${content}</div>
+      <script src="index.js"></script>
+      </body>
+    </html>
+  `);
+  });
 };

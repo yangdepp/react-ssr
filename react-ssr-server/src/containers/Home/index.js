@@ -36,8 +36,8 @@ class Home extends Component {
 
 //  给Home组件增加一个静态方法
 //  这个函数负责在服务器渲染之前，把这个路由需要的异步数据提前加载好
-Home.loadData = () => {
-  // todo
+Home.loadData = (store) => {
+  return store.dispatch(getHomeList())
 };
 
 const mapStateToProps = state => ({
