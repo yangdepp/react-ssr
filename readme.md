@@ -1,8 +1,7 @@
 # React SSR Project
+
 1. 同构
 2. next.js
-
-
 
 ## 服务端渲染流程
 
